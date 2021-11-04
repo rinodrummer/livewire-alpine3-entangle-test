@@ -132,3 +132,7 @@ Full package list:
 [Watch an example](https://youtu.be/hgzQE5OOPqA)
 
 [Test it](http://127.0.0.1:8000/test)
+
+# Bug solved!
+
+That's the [fix](https://github.com/rinodrummer/livewire-alpine3-entangle-test/blob/fee2b30bbe8e262be2dd8bb77219a6202e2e49d8/resources/views/vendor/jetstream-custom/components/modal.blade.php#L48-L51)!
