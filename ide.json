@@ -1,0 +1,21 @@
+{
+    "$schema": "http://laravel-ide.com/schema/laravel-ide-v1.json",
+    "blade": {
+        "components": {
+            "viewPaths": [
+                {
+                    "path": "resources/views/jetstream-custom/components",
+                    "namespace": "",
+                    "prefix": "jet-custom-",
+                    "viewNamespace": "jetstream-custom"
+                },
+                {
+                    "path": "resources/views/jetstream/components",
+                    "namespace": "",
+                    "prefix": "jet-",
+                    "viewNamespace": "jetstream"
+                }
+            ]
+        }
+    }
+}
