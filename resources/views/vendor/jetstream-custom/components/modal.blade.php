@@ -5,14 +5,16 @@
 ])
 
 @php
-    if ($attributes->has('wire:model')) {
+    $hasWireModel = $attributes->has('wire:model');
+
+    if ($hasWireModel) {
         $id ??= md5($attributes->wire('model'));
     }
 @endphp
 
 <div
     x-data="{
-        show: @if ($attributes->has('wire:model')) @entangle($attributes->wire('model')) @else false @endif,
+        show: @if($hasWireModel) @entangle($attributes->wire('model')) @else false @endif,
         focusables() {
             // All focusable element types...
             let selector = 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
@@ -43,7 +45,10 @@
     id="{{ $id }}"
     class="jetstream-modal fixed top-0 inset-x-0 px-4 pt-6 z-50 sm:px-0 sm:flex sm:items-top sm:justify-center"
     x-cloak
-    {{ $attributes->merge() }}
+    {{-- It was this: --}}
+    {{--$attributes->merge()--}}
+    {{-- Must be this: --}}
+    {{ $attributes->merge()->except('wire:model') }}
 >
     <div x-show="show" class="fixed inset-0 transform transition-all" x-on:click="show = false"
         x-transition:enter="ease-out duration-300"
@@ -62,7 +67,8 @@
         x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
         x-transition:leave="ease-in duration-200"
         x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+    >
         {{ $slot }}
     </div>
 </div>
